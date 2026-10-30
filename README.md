@@ -58,9 +58,14 @@ pixi run --locked -e ros2 model
 ```
 
 Configure input-device paths and scaling through the launch arguments documented
-in `src/input_devices/README.md`. Camera mount transforms are published by
-`testbed_transforms`, with an explicit calibration artifact. Sensorium provides
-the reusable calibration/processing mathematics and records the published state.
+in `src/input_devices/README.md`. Robot2 carries the endoscope: its kinematic TF
+chain and configured tool-tip offset determine the camera position, while
+`testbed_transforms` supplies the fixed camera-axis rotation from the mount
+calibration. The camera reference origin is the modeled endoscope tip. Supply
+the calibrated relationship between robot bases in TF. Consumers select their robot
+base and camera frames and resolve TF at robot acquisition timestamps.
+Sensorium provides the reusable calibration/processing mathematics and records
+the selected per-robot transform streams. Endoscope guidance uses robot2.
 
 Commands are motion deltas in metres/radians with movement duration, source ID,
 sequence and source timestamp. A newer accepted command preempts the current
@@ -74,8 +79,7 @@ Camera timestamps represent host capture-callback arrival, not hardware exposure
 
 ## Optional hardware
 
-The default build does not require the Lambda SDK or Isaac integration.
-Set `TESTBED_WITH_ISAAC=1` to include the optional Isaac system plugin.
+The default build does not require the Lambda SDK.
 To build Lambda, provide its Force Dimension SDK and enable the package:
 
 ```bash

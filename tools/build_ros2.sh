@@ -3,9 +3,6 @@ set -euo pipefail
 cd "$(dirname "${BASH_SOURCE[0]}")/.."
 workspace="$PWD"
 skip_packages=()
-if [ "${TESTBED_WITH_ISAAC:-0}" != 1 ]; then
-  skip_packages+=(testbed_isaac_ur5e_system)
-fi
 hardware_options=()
 if [ "${TESTBED_WITH_LAMBDA:-0}" != 1 ]; then
   skip_packages+=(lambda)

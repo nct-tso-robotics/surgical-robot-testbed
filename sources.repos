@@ -2,11 +2,11 @@ repositories:
   robots_controllers:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/robots_controllers.git
-    version: 00f9045ebdd66668d4b26e88df213a2fedb80b01
+    version: 09cb0ec4f4727c1e2a773815c43f02d678e51626
   input_devices:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/input_devices.git
-    version: 3bb7e944d0f6d355dc92e091338061e869a4795a
+    version: 2eadffedfca38a47c081c834f0df67debbfdbdd9
   testbed_msgs:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/testbed_msgs.git
@@ -14,7 +14,7 @@ repositories:
   tso_sensorium:
     type: git
     url: https://github.com/nct-tso-robotics/tso_sensorium.git
-    version: bcc631c14964243a57a61e49e066421f6eb6f9d3
+    version: 923205868997c2005857f730c4e122b377a87d1b
   endoscope_capture:
     type: git
     url: https://github.com/nct-tso-robotics/tso_endoscope_capture.git

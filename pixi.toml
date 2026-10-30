@@ -80,7 +80,7 @@ robot = "ros2 launch testbed_launchers ur5e_joint_rcm_controller.launch.py"
 model = "ros2 launch input_translation model_pose_setter.launch.py"
 record-ui = "python -m tso_sensorium.scripts.record_ui_ros2 --config_path src/tso_sensorium/configs/recording/tso_testbed_jazzy_ui.yaml --session.output_folder recordings"
 camera-build = "pixi run --manifest-path src/endoscope_capture/pixi.toml --locked -e ros2 build-capture"
-camera = "pixi run --manifest-path src/endoscope_capture/pixi.toml --locked -e ros2 capture"
+camera = "pixi run --manifest-path src/endoscope_capture/pixi.toml --locked -e ros2 capture frame_id:=endoscope/camera_optical_frame"
 
 [feature.policy.dependencies]
 opencv = ">=4.10,<5"
