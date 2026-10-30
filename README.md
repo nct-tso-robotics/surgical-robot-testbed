@@ -73,8 +73,9 @@ motion; commands are not an additive queue. Inputs do not accumulate targets.
 The controller validates command age, frame and limits. Controller and broadcaster
 derive their kinematics from the same robot description.
 
-The optional WebSocket gripper state reports the last delivered command, not a
-measured physical opening. The Jazzy recording profiles retain that distinction.
+The optional `gripper_server` WebSocket bridge reports the latest requested gripper
+command, including while its browser is disconnected. Recording that state does
+not provide delivery acknowledgment or measured physical opening.
 Camera timestamps represent host capture-callback arrival, not hardware exposure.
 
 ## Optional hardware

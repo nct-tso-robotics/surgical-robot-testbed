@@ -6,7 +6,7 @@ repositories:
   input_devices:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/input_devices.git
-    version: 3a4171c3252cbf7bd8c8726e22a57831d05a2474
+    version: 6916dda9599ce0d6f42f4217339c58928cfe6a7a
   testbed_msgs:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/testbed_msgs.git
