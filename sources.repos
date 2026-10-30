@@ -2,7 +2,7 @@ repositories:
   robots_controllers:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/robots_controllers.git
-    version: 13420e9a613d5d8fabbf47c9a720c422d97aa08d
+    version: 2178b6a5030d34de5d63f628c4d6e4c4acaa3d5c
   input_devices:
     type: git
     url: https://gitlab.com/nct_tso_public/robot-testbed/input_devices.git
