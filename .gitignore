@@ -7,3 +7,5 @@ logs/
 recordings/
 __pycache__/
 .pytest_cache/
+/commands.md
+/COMMANDS.md

@@ -4,7 +4,10 @@ Jazzy workspace for the delta-based RCM controller, independent state broadcaste
 input devices, policy interface, endoscope capture and Sensorium recording.
 The controller and message repositories use `refactor/update` as their main-branch
 baseline. The input repository starts from Jazzy and adopts the same delta interface.
-The previous Noetic setup is preserved on the repositories' Noetic branches.
+The previous Noetic setup is preserved in the original GitLab repositories;
+these private GitHub repositories publish the Jazzy development line.
+The workspace uses a private Sensorium integration copy so its testbed profiles
+remain private while the upstream Sensorium library stays independent.
 
 ## Install and build
 
@@ -13,6 +16,8 @@ Import the pinned sources before installing the environments, because the Python
 packages are installed from those checkouts:
 
 ```bash
+git clone https://github.com/nct-tso-robotics/tso_testbed.git
+cd tso_testbed
 pixi exec --spec vcstool --spec pyyaml bash tools/fetch_sources.sh
 pixi install --locked -e ros2
 pixi run --locked -e ros2 build
