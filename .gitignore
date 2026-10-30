@@ -1,8 +1,9 @@
 .pixi/
-.catkin_tools/
-build/
-devel/
-install/
-logs/
-__pycache__/
 src/
+build/
+install/
+log/
+logs/
+recordings/
+__pycache__/
+.pytest_cache/

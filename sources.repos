@@ -1,37 +1,29 @@
 repositories:
-  cartesian-control-msgs:
+  robots_controllers:
     type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS_cartesian_control_msgs.git
-    version: d7c8f4903707834c706c4ef05dbb15c4691512e6
-  cartesian-controllers:
+    url: https://gitlab.com/nct_tso_public/robot-testbed/robots_controllers.git
+    version: 00f9045ebdd66668d4b26e88df213a2fedb80b01
+  input_devices:
     type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS_controllers_cartesian.git
-    version: 2f08ae2aa16c634aedbe7492aba10e2e545984f5
-  industrial-core:
+    url: https://gitlab.com/nct_tso_public/robot-testbed/input_devices.git
+    version: 3bb7e944d0f6d355dc92e091338061e869a4795a
+  testbed_msgs:
     type: git
-    url: https://github.com/ros-industrial/industrial_core.git
-    version: ea3d805e1271550be312409d6474177e67796e15
-  industrial-status:
+    url: https://gitlab.com/nct_tso_public/robot-testbed/testbed_msgs.git
+    version: 6192ce8eb593574d1af9ec766dbf540e2f12ae7f
+  tso_sensorium:
     type: git
-    url: https://github.com/gavanderhoorn/industrial_robot_status_controller.git
-    version: 0abfbb769af3edcb83fb6453c95e7b8c17cca70a
-  passthrough-controllers:
+    url: https://github.com/nct-tso-robotics/tso_sensorium.git
+    version: bcc631c14964243a57a61e49e066421f6eb6f9d3
+  endoscope_capture:
     type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS_passthrough_controllers.git
-    version: 6807440cc6682d29186a08f7d6d38db5c02256c5
-  scaled-controllers:
+    url: https://github.com/nct-tso-robotics/tso_endoscope_capture.git
+    version: 76413640e3a7516cd2e6680ef722d201520debe8
+  tso_robotics_sockets:
     type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS_scaled_controllers.git
-    version: 345f69ef4ed389c2ff823e72093b50f6c88cfdf0
-  universal-robot:
+    url: https://github.com/nct-tso-robotics/tso_robotics_sockets.git
+    version: 39cc6b10b1292b875573a06276452e958101bc28
+  versatil_constants:
     type: git
-    url: https://github.com/ros-industrial/universal_robot.git
-    version: 4f3c776b3661e5b6e3f25a961382084873e2d3cc
-  ur-client-library:
-    type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_Client_Library.git
-    version: 173f1936ec82ebe6e5f96650cecb810db5f59b71
-  ur-driver:
-    type: git
-    url: https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
-    version: 497af25ce530ae94a1af04556743e6d3df1eb014
+    url: https://github.com/nct-tso-robotics/versatil_constants.git
+    version: fe5101927b8ed37dce851f256339e340f321b74e

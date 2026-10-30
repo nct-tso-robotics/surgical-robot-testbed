@@ -1,58 +1,96 @@
 [workspace]
 name = "robot-testbed"
-channels = ["https://prefix.dev/robostack-noetic", "conda-forge"]
+channels = ["https://prefix.dev/conda-forge"]
 platforms = ["linux-64"]
 
 [environments]
-ros1 = { features = ["ros1"], no-default-feature = true }
+core = { features = ["build", "core", "test"], no-default-feature = true }
+core-franka = { features = ["build", "core", "test", "franka"], no-default-feature = true }
+ros2 = { features = ["build", "core", "test", "ros2", "policy"], no-default-feature = true }
 
-[feature.ros1.dependencies]
-python = "3.11.*"
+[feature.franka.activation.env]
+TESTBED_WITH_FRANKA = "1"
+
+[feature.build.dependencies]
+python = "3.12.*"
 cmake = ">=3.20,<4"
 cxx-compiler = "*"
-make = "*"
 ninja = "*"
+make = "*"
 pkg-config = "*"
-patch = "*"
 git = "*"
 vcstool = "*"
-catkin_tools = "*"
-empy = ">=3.3.4,<4"
+pip = "*"
+setuptools = ">=77"
+
+[feature.core.dependencies]
 eigen = ">=3.4,<4"
-libboost-devel = "*"
+orocos-kdl = "*"
+pybind11 = ">=2.13,<4"
 numpy = ">=1.26,<3"
-opencv = ">=4.8,<5"
+
+[feature.core.pypi-dependencies]
+testbed-input-core = { path = "src/input_devices", editable = true }
+
+[feature.core.activation]
+scripts = ["tools/activate_core.sh"]
+
+[feature.test.dependencies]
+pytest = ">=8,<9"
+ruff = "==0.15.20"
+
+[feature.core.tasks]
+build-core = "bash tools/build_core.sh"
+
+[feature.ros2]
+channels = ["https://prefix.dev/robostack-jazzy"]
+
+[feature.ros2.dependencies]
+filelock = ">=3,<4"
+colcon-common-extensions = "*"
+ros-jazzy-ros-base = "*"
+ros-jazzy-ament-cmake = "*"
+ros-jazzy-ament-cmake-pytest = "*"
+ros-jazzy-rosidl-default-generators = "*"
+ros-jazzy-rosidl-default-runtime = "*"
+ros-jazzy-ros2-control = "*"
+ros-jazzy-ros2-controllers = "*"
+ros-jazzy-generate-parameter-library = "*"
+ros-jazzy-realtime-tools = "*"
+ros-jazzy-ur-robot-driver = "*"
+ros-jazzy-ur-description = "*"
+ros-jazzy-cv-bridge = "*"
+ros-jazzy-tf2-ros = "*"
+ros-jazzy-robot-state-publisher = "*"
+ros-jazzy-xacro = "*"
+ros-jazzy-launch-testing = "*"
+ros-jazzy-launch-xml = "*"
+evdev = ">=2,<3"
+inputs = "0.5.*"
+libusb = ">=1,<2"
+ros-jazzy-kdl-parser = ">=2.11.0,<3"
+
+[feature.ros2.activation]
+scripts = ["tools/activate_ros2.sh"]
+
+[feature.ros2.tasks]
+build = { cmd = "bash tools/build_ros2.sh", depends-on = ["build-core"] }
+mock = "ros2 launch testbed_launchers mock.launch.py"
+robot = "ros2 launch testbed_launchers ur5e_joint_rcm_controller.launch.py"
+model = "ros2 launch input_translation model_pose_setter.launch.py"
+record-ui = "python -m tso_sensorium.scripts.record_ui_ros2 --config_path src/tso_sensorium/configs/recording/tso_testbed_jazzy_ui.yaml --session.output_folder recordings"
+camera-build = "pixi run --manifest-path src/endoscope_capture/pixi.toml --locked -e ros2 build-capture"
+camera = "pixi run --manifest-path src/endoscope_capture/pixi.toml --locked -e ros2 capture"
+
+[feature.policy.dependencies]
+opencv = ">=4.10,<5"
 scipy = ">=1.11,<2"
+pandas = ">=2,<3"
 pyzmq = ">=25"
 websockets = ">=10,<16"
-ros-noetic-ros-core = "*"
-ros-noetic-ros-control = "*"
-ros-noetic-ros-controllers = "*"
-ros-noetic-cv-bridge = "*"
-ros-noetic-message-generation = "*"
-ros-noetic-message-runtime = "*"
-ros-noetic-ur-msgs = "*"
-ros-noetic-tf = "*"
-ros-noetic-tf2-geometry-msgs = "*"
-ros-noetic-tf2-eigen = "*"
-ros-noetic-kdl-parser = "*"
-ros-noetic-robot-state-publisher = "*"
-ros-noetic-xacro = "*"
-ros-noetic-rostest = "*"
 flask = ">=3,<4"
-evdev = ">=2.0.0,<3"
-inputs = "0.5.*"
-libusb = ">=1.0.30,<2"
 
-[feature.ros1.tasks]
-fetch-sources = "mkdir -p src/vendor && vcs import --recursive --skip-existing src/vendor < sources.repos"
-build = { cmd = "bash tools/build_ros1.sh", depends-on = ["fetch-sources"] }
-
-[feature.ros1.activation]
-scripts = ["tools/activate_ros1.sh"]
-
-[feature.ros1.activation.env]
-TESTBED_WITH_FRANKA = "0"
-
-[feature.ros1.pypi-dependencies]
-tso-sensorium = { path = "../tso_sensorium", editable = true }
+[feature.policy.pypi-dependencies]
+tso-sensorium = { path = "src/tso_sensorium", editable = true }
+tso-robotics-sockets = { path = "src/tso_robotics_sockets", editable = true }
+versatil-constants = { path = "src/versatil_constants", editable = true }
