@@ -1,0 +1,8 @@
+.pixi/
+.catkin_tools/
+build/
+devel/
+install/
+logs/
+__pycache__/
+src/

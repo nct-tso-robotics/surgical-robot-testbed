@@ -1,0 +1,37 @@
+repositories:
+  cartesian-control-msgs:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS_cartesian_control_msgs.git
+    version: d7c8f4903707834c706c4ef05dbb15c4691512e6
+  cartesian-controllers:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS_controllers_cartesian.git
+    version: 2f08ae2aa16c634aedbe7492aba10e2e545984f5
+  industrial-core:
+    type: git
+    url: https://github.com/ros-industrial/industrial_core.git
+    version: ea3d805e1271550be312409d6474177e67796e15
+  industrial-status:
+    type: git
+    url: https://github.com/gavanderhoorn/industrial_robot_status_controller.git
+    version: 0abfbb769af3edcb83fb6453c95e7b8c17cca70a
+  passthrough-controllers:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS_passthrough_controllers.git
+    version: 6807440cc6682d29186a08f7d6d38db5c02256c5
+  scaled-controllers:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS_scaled_controllers.git
+    version: 345f69ef4ed389c2ff823e72093b50f6c88cfdf0
+  universal-robot:
+    type: git
+    url: https://github.com/ros-industrial/universal_robot.git
+    version: 4f3c776b3661e5b6e3f25a961382084873e2d3cc
+  ur-client-library:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_Client_Library.git
+    version: 173f1936ec82ebe6e5f96650cecb810db5f59b71
+  ur-driver:
+    type: git
+    url: https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
+    version: 497af25ce530ae94a1af04556743e6d3df1eb014
