@@ -1,0 +1,23 @@
+controller_manager:
+  ros__parameters:
+    rcm_broadcaster:
+      type: testbed_broadcasters/RcmBroadcaster
+
+    joint_rcm_controller:
+      type: testbed_joint_rcm_controller/JointRcmController
+
+rcm_broadcaster:
+  ros__parameters:
+    robot_type: "$(var robot_type)"
+    ee_frame_tip_point: $(var ee_frame_tip_point)
+    ee_frame_rcm_point: $(var ee_frame_rcm_point)
+
+joint_rcm_controller:
+  ros__parameters:
+    robot_type: "$(var robot_type)"
+    ee_frame_tip_point: $(var ee_frame_tip_point)
+    ee_frame_rcm_point: $(var ee_frame_rcm_point)
+    target_tip_pose_topic: $(var target_tip_pose_topic)
+    cartesian_velocity_limit: $(var cartesian_velocity_limit)
+    cartesian_acceleration_limit: $(var cartesian_acceleration_limit)
+    cartesian_jerk_limit: $(var cartesian_jerk_limit)

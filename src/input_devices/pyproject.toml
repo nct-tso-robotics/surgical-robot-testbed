@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "testbed-input-core"
+version = "0.1.0"
+description = "ROS-independent input acquisition and robot motion mapping"
+maintainers = [
+    { name = "Lorenzo Mazza", email = "lorenzo.mazza@nct-dresden.de" },
+    { name = "Ariel Rodriguez", email = "ariel.rodriguezjimenez@nct-dresden.de" },
+]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+hardware = ["evdev>=1.6"]
+gripper = ["websockets>=10,<16"]
+policy = ["tso-sensorium>=0.1.0", "tso-robotics-sockets", "versatil-constants"]
+test = ["pytest>=8", "ruff>=0.11"]
+
+[tool.setuptools.packages.find]
+include = ["testbed_input_core*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88

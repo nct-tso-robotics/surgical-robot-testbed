@@ -1,0 +1,171 @@
+# ROS2 profile: numeric columns never depend on ROS message string formatting.
+output_folder: ''
+episode_name: null
+record_rosbag: false
+rosbag_topics:
+- /robot1/robot_state
+- /robot2/robot_state
+- /robot1/camera_transform
+- /robot2/camera_transform
+- /language_instruction
+- /koala_grasper/state
+- /robot1/pedal_board/state
+- /endoscope/left/image_raw
+- /endoscope/right/image_raw
+- /endoscope/capture/image_raw
+recorders:
+- type: topic
+  file_name: robot_state
+  topic_name: /robot1/robot_state
+  message_type: testbed_msgs.msg.RobotState
+  queue_size: 100
+  fields: &id001
+  - robot_pose.position.x
+  - robot_pose.position.y
+  - robot_pose.position.z
+  - robot_pose.orientation.x
+  - robot_pose.orientation.y
+  - robot_pose.orientation.z
+  - robot_pose.orientation.w
+  - robot_space_tip_position.x
+  - robot_space_tip_position.y
+  - robot_space_tip_position.z
+  - robot_space_initial_tip_position.x
+  - robot_space_initial_tip_position.y
+  - robot_space_initial_tip_position.z
+  - relative_tip_position.x
+  - relative_tip_position.y
+  - relative_tip_position.z
+  - relative_pivot_rpy.x
+  - relative_pivot_rpy.y
+  - relative_pivot_rpy.z
+  - relative_pivot_translation
+  - robot_space_wrench.force.x
+  - robot_space_wrench.force.y
+  - robot_space_wrench.force.z
+  - robot_space_wrench.torque.x
+  - robot_space_wrench.torque.y
+  - robot_space_wrench.torque.z
+  csv_header: &id002
+  - robot_pose_position_x
+  - robot_pose_position_y
+  - robot_pose_position_z
+  - robot_pose_orientation_x
+  - robot_pose_orientation_y
+  - robot_pose_orientation_z
+  - robot_pose_orientation_w
+  - robot_space_tip_position_x
+  - robot_space_tip_position_y
+  - robot_space_tip_position_z
+  - robot_space_initial_tip_position_x
+  - robot_space_initial_tip_position_y
+  - robot_space_initial_tip_position_z
+  - relative_tip_position_x
+  - relative_tip_position_y
+  - relative_tip_position_z
+  - relative_pivot_roll
+  - relative_pivot_pitch
+  - relative_pivot_yaw
+  - relative_pivot_translation
+  - robot_space_wrench_force_x
+  - robot_space_wrench_force_y
+  - robot_space_wrench_force_z
+  - robot_space_wrench_torque_x
+  - robot_space_wrench_torque_y
+  - robot_space_wrench_torque_z
+- type: topic
+  file_name: robot2_state
+  topic_name: /robot2/robot_state
+  message_type: testbed_msgs.msg.RobotState
+  queue_size: 100
+  fields: *id001
+  csv_header: *id002
+  required: false
+- type: topic
+  file_name: robot_camera_transform
+  topic_name: /robot1/camera_transform
+  message_type: geometry_msgs.msg.TransformStamped
+  fields:
+  - transform.rotation.x
+  - transform.rotation.y
+  - transform.rotation.z
+  - transform.rotation.w
+  - header.frame_id
+  - child_frame_id
+  csv_header:
+  - quaternion_x
+  - quaternion_y
+  - quaternion_z
+  - quaternion_w
+  - parent_frame
+  - child_frame
+  required: false
+- type: topic
+  file_name: robot2_camera_transform
+  topic_name: /robot2/camera_transform
+  message_type: geometry_msgs.msg.TransformStamped
+  fields:
+  - transform.rotation.x
+  - transform.rotation.y
+  - transform.rotation.z
+  - transform.rotation.w
+  - header.frame_id
+  - child_frame_id
+  csv_header:
+  - quaternion_x
+  - quaternion_y
+  - quaternion_z
+  - quaternion_w
+  - parent_frame
+  - child_frame
+  required: false
+- type: topic
+  file_name: language_instruction
+  topic_name: /language_instruction
+  message_type: testbed_msgs.msg.LanguageInstruction
+  required: false
+  fields:
+  - instruction
+  csv_header:
+  - language_instruction
+- type: topic
+  file_name: koala_grasp
+  topic_name: /koala_grasper/state
+  message_type: testbed_msgs.msg.KoalaCommand
+  required: false
+  fields:
+  - open
+- type: topic
+  file_name: pedal_board
+  topic_name: /robot1/pedal_board/state
+  message_type: testbed_msgs.msg.PedalBoardState
+  required: false
+  fields:
+  - right_blue_pedal
+  - left_blue_pedal
+  - right_yellow_pedal
+  - left_yellow_pedal
+  - top_grey_pedal
+  - bottom_grey_pedal
+  - flap
+- type: video
+  file_name: laparoscope_left
+  topic_name: /endoscope/left/image_raw
+  liveness_topic: /endoscope/left/camera_info
+  liveness_message_type: sensor_msgs.msg.CameraInfo
+  frames_per_second: 30
+  lossless_compression: true
+- type: video
+  file_name: laparoscope_right
+  topic_name: /endoscope/right/image_raw
+  liveness_topic: /endoscope/right/camera_info
+  liveness_message_type: sensor_msgs.msg.CameraInfo
+  frames_per_second: 30
+  lossless_compression: true
+- type: video
+  file_name: laparoscope_combined
+  topic_name: /endoscope/capture/image_raw
+  liveness_topic: /endoscope/capture/camera_info
+  liveness_message_type: sensor_msgs.msg.CameraInfo
+  frames_per_second: 30
+  lossless_compression: true

@@ -1,0 +1,19 @@
+# Build directories
+build/
+dist/
+out/
+cmake-build-*/
+devel/
+install/
+*.o
+*.so
+*.a
+*.pyc
+__pycache__/
+*.egg-info/
+.eggs/
+
+# IDE specific
+.vscode/
+compile.sh
+solvers_compile.sh

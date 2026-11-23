@@ -1,0 +1,81 @@
+joint_rcm_controller:
+  ee_frame_tip_point:
+    type: double_array
+    default_value: [0.0, 0.0, 0.3]
+    description: "Instrument tip in tip_frame [m]."
+  ee_frame_rcm_point:
+    type: double_array
+    default_value: [0.0, 0.0, 0.1]
+    description: "Pivot in tip_frame [m]."
+  robot_type:
+    type: string
+    default_value: "ur5e"
+    description: "Hardware adapter; UR5e currently implemented."
+  target_tip_pose_topic:
+    type: string
+    default_value: "set_tip_pose"
+    description: "Latest delta command topic relative to robot namespace."
+  base_frame:
+    type: string
+    default_value: "base_link"
+    description: "Kinematics base link in shared robot description."
+  frame_prefix:
+    type: string
+    default_value: ""
+    description: "TF prefix prepended to base_frame in command headers; match robot_state_publisher."
+  tip_frame:
+    type: string
+    default_value: "tool0"
+    description: "Tool attachment link in shared robot description."
+  log_info:
+    type: bool
+    default_value: false
+    description: "Enable solver logging."
+  cartesian_velocity_limit:
+    type: double
+    default_value: 0.05
+    description: "Tip speed limit [m/s]."
+  cartesian_acceleration_limit:
+    type: double
+    default_value: 0.25
+    description: "Tip acceleration limit [m/s^2]."
+  cartesian_jerk_limit:
+    type: double
+    default_value: 1.0
+    description: "Tip jerk limit [m/s^3]."
+  angular_velocity_limit:
+    type: double
+    default_value: 0.5
+    description: "Roll velocity limit [rad/s]."
+  angular_acceleration_limit:
+    type: double
+    default_value: 1.0
+    description: "Roll acceleration limit [rad/s^2]."
+  angular_jerk_limit:
+    type: double
+    default_value: 4.0
+    description: "Roll jerk limit [rad/s^3]."
+  joint_velocity_limit:
+    type: double
+    default_value: 1.0
+    description: "Additional joint speed cap [rad/s]."
+  max_command_age:
+    type: double
+    default_value: 0.25
+    description: "Maximum transport/buffer age [s]."
+  command_timeout:
+    type: double
+    default_value: 1.0
+    description: "Cancel remaining motion after this receipt age [s]."
+  max_delta_position:
+    type: double
+    default_value: 0.05
+    description: "Maximum command displacement norm [m]."
+  max_delta_roll:
+    type: double
+    default_value: 0.5
+    description: "Maximum command roll magnitude [rad]."
+  max_movement_time:
+    type: double
+    default_value: 5.0
+    description: "Maximum requested motion horizon [s]."

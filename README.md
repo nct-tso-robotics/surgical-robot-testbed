@@ -1,23 +1,19 @@
-# Robot testbed
+# Surgical Robot Testbed
 
-Jazzy workspace for the delta-based RCM controller, independent state broadcaster,
-input devices, policy interface, endoscope capture and Sensorium recording.
-The controller and message repositories use `refactor/update` as their main-branch
-baseline. The input repository starts from Jazzy and adopts the same delta interface.
-The previous Noetic setup is preserved in the original GitLab repositories;
-these private GitHub repositories publish the Jazzy development line.
-The workspace uses a private Sensorium integration copy so its testbed profiles
-remain private while the upstream Sensorium library stays independent.
+ROS 2 Jazzy workspace for the surgical robotics platform described in
+[An Open-Source Robotics Research Platform for Autonomous Laparoscopic Surgery](https://arxiv.org/abs/2603.08490).
+It includes delta-based RCM control, robot state publishing, teleoperation,
+stereo endoscope capture, Sensorium recording and a policy inference interface.
 
 ## Install and build
 
-Requires Pixi and access to the repositories listed in `sources.repos`.
-Import the pinned sources before installing the environments, because the Python
-packages are installed from those checkouts:
+Requires Pixi on 64-bit x86 Linux. The ROS controllers, input devices and
+message definitions are included under `src/`. Fetch the remaining public
+dependencies before installing the environments.
 
 ```bash
-git clone https://github.com/nct-tso-robotics/tso_testbed.git
-cd tso_testbed
+git clone https://github.com/nct-tso-robotics/surgical-robot-testbed.git
+cd surgical-robot-testbed
 pixi exec --spec vcstool --spec pyyaml bash tools/fetch_sources.sh
 pixi install --locked -e ros2
 pixi run --locked -e ros2 build
@@ -35,9 +31,8 @@ pixi install --locked -e core
 pixi run --locked -e core build-core
 ```
 
-Build and install directories are separate for each environment. The ROS2
-activation sources only its own environment and workspace overlay. Do not source
-system ROS or the Noetic workspace into it.
+Build and install directories are separate for each environment. Use Pixi to
+activate the Jazzy environment and its workspace overlay.
 
 ## Run
 
@@ -49,7 +44,7 @@ is `robot1`; state is `/robot1/robot_state` and commands are `/robot1/set_tip_po
 pixi run --locked -e ros2 mock
 
 # Physical UR robot: supply its address and its own extracted calibration.
-pixi run --locked -e ros2 robot robot_ip:=<address> kinematics_params_file:=<file.yaml>
+pixi run --locked -e ros2 robot robot_ip:=ROBOT_IP kinematics_params_file:=calibration/robot.yaml
 
 # Camera runs in its own capture environment.
 pixi run --locked -e ros2 camera-build
@@ -82,6 +77,11 @@ The optional `gripper_server` WebSocket bridge reports the latest requested grip
 command, including while its browser is disconnected. Recording that state does
 not provide delivery acknowledgment or measured physical opening.
 Camera timestamps represent host capture-callback arrival, not hardware exposure.
+The recording UI loads the files in `configs/recording/` and `configs/dataset/`.
+Their includes are relative to the configuration files. The policy interface
+uses Sensorium's packaged stereo calibration by default. The camera mount
+package ships an [example mount calibration](src/input_devices/testbed_transforms/config/endoscope_mount.example.yaml).
+For a physical UR, use a kinematics calibration extracted from that robot.
 
 ## Optional hardware
 
@@ -92,9 +92,16 @@ To build Lambda, provide its Force Dimension SDK and enable the package:
 TESTBED_WITH_LAMBDA=1 FORCE_DIMENSION_SDK_ROOT=<sdk-directory> pixi run --locked -e ros2 build
 ```
 
-The UR hardware backend is supported by the Jazzy implementation. Optional Franka
-kinematics and Python bindings can be built with `pixi run -e core-franka build-core`.
-This does not implement a Jazzy Franka hardware adapter; the existing hardware
-backend remains available in the preserved Noetic implementation. The default
-core/UR build excludes Franka. Blackmagic capture still requires its host driver/runtime;
-Pixi manages userspace dependencies, not kernel drivers.
+The Jazzy hardware backend supports UR robots. Optional Franka support covers
+kinematics and Python bindings and builds with `pixi run -e core-franka build-core`.
+Blackmagic capture requires the Desktop Video driver and runtime on the capture host.
+
+## Maintainers
+
+- Lorenzo Mazza <lorenzo.mazza@nct-dresden.de>
+- Ariel Rodriguez <ariel.rodriguezjimenez@nct-dresden.de>
+
+## License
+
+The workspace is distributed under the [MIT License](LICENSE). See the
+[source and license notices](NOTICE.md) for the bundled packages.

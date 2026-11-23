@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<library path="testbed_joint_rcm_controller">
+  <class name="testbed_joint_rcm_controller/JointRcmController"
+         type="testbed_joint_rcm_controller::JointRcmController"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      A controller that is constrained by a remote center of motion (RCM)
+    </description>
+  </class>
+</library>

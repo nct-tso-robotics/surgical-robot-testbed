@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<library path="testbed_broadcasters">
+  <class name="testbed_broadcasters/RcmBroadcaster"
+         type="testbed_broadcasters::RcmBroadcaster"
+         base_class_type="controller_interface::ControllerInterface">
+    <description>
+      A controller that publishes the RCM state
+    </description>
+  </class>
+</library>

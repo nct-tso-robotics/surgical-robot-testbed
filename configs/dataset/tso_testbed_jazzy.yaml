@@ -1,0 +1,74 @@
+# State: tip displacement from the activation pose, expressed in robot-base axes [m].
+# Actions: consecutive position differences in the same axes [m], matching policy deltas.
+recordings_root: ''
+save_frames: false
+n_jobs: -1
+sync_column: time
+schema:
+  name: tso_testbed_jazzy
+  fps: 30
+  task: null
+  cameras:
+  - name: left
+    frame_column: frameLeftPath
+    height: 540
+    width: 960
+  - name: right
+    frame_column: frameRightPath
+    height: 540
+    width: 960
+  arms:
+  - name: robot1
+    state_columns:
+    - relative_tip_position_x
+    - relative_tip_position_y
+    - relative_tip_position_z
+    action_columns:
+    - robot_frame_tip_delta_x
+    - robot_frame_tip_delta_y
+    - robot_frame_tip_delta_z
+  coordinate_frame_features:
+    relative_tip_position:
+      columns:
+      - relative_tip_position_x
+      - relative_tip_position_y
+      - relative_tip_position_z
+      frame: robot_base
+      frame_temporality: fixed
+    robot_frame_tip_delta:
+      columns:
+      - robot_frame_tip_delta_x
+      - robot_frame_tip_delta_y
+      - robot_frame_tip_delta_z
+      frame: robot_base
+      frame_temporality: fixed
+videos:
+- video_file: laparoscope_left.avi
+  timestamps_file: laparoscope_left.csv
+  frame_column: frameLeftPath
+  frames_directory: framesLeft
+- video_file: laparoscope_right.avi
+  timestamps_file: laparoscope_right.csv
+  frame_column: frameRightPath
+  frames_directory: framesRight
+states:
+- state_file: robot_state.csv
+  columns:
+  - relative_tip_position_x
+  - relative_tip_position_y
+  - relative_tip_position_z
+table_transforms:
+- type: forward_difference
+  columns:
+  - relative_tip_position_x
+  - relative_tip_position_y
+  - relative_tip_position_z
+  output_columns:
+  - robot_frame_tip_delta_x
+  - robot_frame_tip_delta_y
+  - robot_frame_tip_delta_z
+- type: drop_terminal_rows
+  count: 1
+writer:
+  type: csv
+  output_root: null

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>lambda</name>
+  <version>0.0.1</version>
+  <description>A ROS2 node for publishing state messages of the forcedimension lambda controller</description>
+
+  <maintainer email="martin.lelis@nct-dresden.de">Martin Lelis</maintainer>
+  <maintainer email="lorenzo.mazza@nct-dresden.de">Lorenzo Mazza</maintainer>
+  <maintainer email="ariel.rodriguezjimenez@nct-dresden.de">Ariel Rodriguez</maintainer>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>testbed_msgs</depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

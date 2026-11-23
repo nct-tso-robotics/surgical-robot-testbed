@@ -1,0 +1,37 @@
+rcm_broadcaster:
+  ee_frame_tip_point:
+    type: double_array
+    default_value: [0.0, 0.0, 0.3]
+    description: "Instrument tip in tip_frame [m]."
+  ee_frame_rcm_point:
+    type: double_array
+    default_value: [0.0, 0.0, 0.1]
+    description: "Pivot in tip_frame [m]."
+  robot_type:
+    type: string
+    default_value: "ur5e"
+    description: "UR5e hardware adapter."
+  base_frame:
+    type: string
+    default_value: "base_link"
+    description: "Kinematics base link in shared robot description."
+  frame_prefix:
+    type: string
+    default_value: ""
+    description: "TF prefix prepended to base_frame in state headers; match robot_state_publisher."
+  tip_frame:
+    type: string
+    default_value: "tool0"
+    description: "Tool attachment frame."
+  robot_state_topic:
+    type: string
+    default_value: "robot_state"
+    description: "Relative robot state topic."
+  read_effort:
+    type: bool
+    default_value: false
+    description: "Request joint effort interfaces; otherwise publish NaN."
+  read_wrench:
+    type: bool
+    default_value: false
+    description: "Request wrench interfaces; otherwise publish NaN."

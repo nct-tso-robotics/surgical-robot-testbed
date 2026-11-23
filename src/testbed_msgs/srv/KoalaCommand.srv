@@ -1,0 +1,6 @@
+string command # for general commands (e.g. "homing", "lock" etc.)
+# if you set motor specific commands below, leave the general command empty
+string grip_motor # for gripper motor specific commands (e.g. "move_absolute", "move_relative" etc.)
+string rotation_motor # for rotation motor specific commands (e.g. "move_absolute", "move_relative" etc.)
+---
+bool success

@@ -1,0 +1,3 @@
+bool request_camera_position
+---
+float64[4] camera_position

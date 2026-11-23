@@ -1,0 +1,8 @@
+int32 grip_position
+int32 grip_velocity
+int32 grip_force
+float32 grip_force_n
+int32 rotation_position
+int32 rotation_velocity
+int32 rotation_force
+float32 rotation_force_n

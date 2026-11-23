@@ -1,0 +1,12 @@
+int32 grip_position
+float32 grip_force
+int32 grip_cmd_done
+int32 rotation_position
+float32 rotation_force
+int32 rotation_cmd_done
+int32 error_critical
+int32 error_warning
+int32 error_info
+int32 gripper_state
+int32 rotation_state
+int32 bool_tool_lock_state

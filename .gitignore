@@ -1,5 +1,8 @@
 .pixi/
-src/
+/src/*
+!/src/input_devices/
+!/src/robots_controllers/
+!/src/testbed_msgs/
 build/
 install/
 log/

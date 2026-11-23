@@ -1,0 +1,6 @@
+session: !include tso_testbed_jazzy.yaml
+host: 127.0.0.1
+port: 8080
+camera_topic: /endoscope/left/image_raw
+staleness_seconds: 1.0
+generation: !include ../dataset/tso_testbed_jazzy.yaml

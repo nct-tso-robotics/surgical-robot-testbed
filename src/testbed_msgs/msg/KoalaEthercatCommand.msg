@@ -1,0 +1,15 @@
+int32 grip_cmd
+int32 grip_cmd_position
+int32 grip_cmd_force
+float32 grip_cmd_force_n
+int32 grip_cmd_velocity
+int32 rotation_cmd
+int32 rotation_cmd_position
+int32 rotation_cmd_force
+float32 rotation_cmd_force_n
+int32 rotation_cmd_velocity
+int32 sensor_tara
+int32 sensor_filter_active
+int32 sensor_filter_active_slot
+int32 error_reset
+int32 ui8_tool_data_index

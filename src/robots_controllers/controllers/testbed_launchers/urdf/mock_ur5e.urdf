@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot name="testbed_mock_ur5e">
+  <link name="world"/>
+  <link name="base_link"/>
+  <joint name="base_joint" type="fixed"><parent link="world"/><child link="base_link"/><origin xyz="0 0 0" rpy="0 0 0"/></joint>
+  <link name="rotor_0"/>
+  <link name="link_0"/>
+  <joint name="shoulder_pan_joint" type="revolute"><parent link="base_link"/><child link="rotor_0"/><axis xyz="0 0 1"/><limit lower="-6.28319" upper="6.28319" effort="100" velocity="2.175"/></joint>
+  <joint name="fixed_0" type="fixed"><parent link="rotor_0"/><child link="link_0"/><origin xyz="0 0 0.1625" rpy="1.5707963267948966 0 0"/></joint>
+  <link name="rotor_1"/>
+  <link name="link_1"/>
+  <joint name="shoulder_lift_joint" type="revolute"><parent link="link_0"/><child link="rotor_1"/><axis xyz="0 0 1"/><limit lower="-6.28319" upper="6.28319" effort="100" velocity="2.175"/></joint>
+  <joint name="fixed_1" type="fixed"><parent link="rotor_1"/><child link="link_1"/><origin xyz="-0.425 0 0" rpy="0 0 0"/></joint>
+  <link name="rotor_2"/>
+  <link name="link_2"/>
+  <joint name="elbow_joint" type="revolute"><parent link="link_1"/><child link="rotor_2"/><axis xyz="0 0 1"/><limit lower="-6.28319" upper="6.28319" effort="100" velocity="2.175"/></joint>
+  <joint name="fixed_2" type="fixed"><parent link="rotor_2"/><child link="link_2"/><origin xyz="-0.3922 0 0" rpy="0 0 0"/></joint>
+  <link name="rotor_3"/>
+  <link name="link_3"/>
+  <joint name="wrist_1_joint" type="revolute"><parent link="link_2"/><child link="rotor_3"/><axis xyz="0 0 1"/><limit lower="-6.28319" upper="6.28319" effort="100" velocity="2.175"/></joint>
+  <joint name="fixed_3" type="fixed"><parent link="rotor_3"/><child link="link_3"/><origin xyz="0 0 0.1333" rpy="1.5707963267948966 0 0"/></joint>
+  <link name="rotor_4"/>
+  <link name="link_4"/>
+  <joint name="wrist_2_joint" type="revolute"><parent link="link_3"/><child link="rotor_4"/><axis xyz="0 0 1"/><limit lower="-6.28319" upper="6.28319" effort="100" velocity="2.175"/></joint>
+  <joint name="fixed_4" type="fixed"><parent link="rotor_4"/><child link="link_4"/><origin xyz="0 0 0.0997" rpy="-1.5707963267948966 0 0"/></joint>
+  <link name="rotor_5"/>
+  <link name="tool0"/>
+  <joint name="wrist_3_joint" type="revolute"><parent link="link_4"/><child link="rotor_5"/><axis xyz="0 0 1"/><limit lower="-6.28319" upper="6.28319" effort="100" velocity="2.175"/></joint>
+  <joint name="fixed_5" type="fixed"><parent link="rotor_5"/><child link="tool0"/><origin xyz="0 0 0.0996" rpy="0 0 0"/></joint>
+  <ros2_control name="MockUR5e" type="system">
+    <hardware><plugin>mock_components/GenericSystem</plugin><param name="calculate_dynamics">true</param></hardware>
+    <joint name="shoulder_pan_joint"><command_interface name="velocity"/><state_interface name="position"><param name="initial_value">0.1</param></state_interface><state_interface name="velocity"><param name="initial_value">0.0</param></state_interface></joint>
+    <joint name="shoulder_lift_joint"><command_interface name="velocity"/><state_interface name="position"><param name="initial_value">-1.2</param></state_interface><state_interface name="velocity"><param name="initial_value">0.0</param></state_interface></joint>
+    <joint name="elbow_joint"><command_interface name="velocity"/><state_interface name="position"><param name="initial_value">-1.1</param></state_interface><state_interface name="velocity"><param name="initial_value">0.0</param></state_interface></joint>
+    <joint name="wrist_1_joint"><command_interface name="velocity"/><state_interface name="position"><param name="initial_value">-1.4</param></state_interface><state_interface name="velocity"><param name="initial_value">0.0</param></state_interface></joint>
+    <joint name="wrist_2_joint"><command_interface name="velocity"/><state_interface name="position"><param name="initial_value">1.3</param></state_interface><state_interface name="velocity"><param name="initial_value">0.0</param></state_interface></joint>
+    <joint name="wrist_3_joint"><command_interface name="velocity"/><state_interface name="position"><param name="initial_value">0.2</param></state_interface><state_interface name="velocity"><param name="initial_value">0.0</param></state_interface></joint>
+  </ros2_control>
+</robot>
